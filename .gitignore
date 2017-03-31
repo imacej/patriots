@@ -1,3 +1,19 @@
+# Python
+*.pyc
+*.db
+
+# DataSet
+*.txt
+*.xls
+
+# Model
+*.data
+*.h5
+*.yml
+*.log
+*.npy
+*.pkl
+
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 *.o
 *.a
