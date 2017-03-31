@@ -1,0 +1,71 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Patriots 数据挖掘平台 API",
+        "description": "这是自动生成的 Patriots 数据挖掘平台 API 文档",
+        "version": "1.0.0",
+        "termsOfService": "http://wdxtub.com",
+        "contact": {
+            "email": "wdxtub@qq.com"
+        },
+        "license": {
+            "name": "GPL-3.0",
+            "url": "https://github.com/wdxtub/Patriots/blob/master/LICENSE"
+        }
+    },
+    "basePath": "/v1",
+    "paths": {
+        "/testsets/": {
+            "post": {
+                "tags": [
+                    "testsets"
+                ],
+                "description": "创建一个测试集",
+                "operationId": "TestsetController.Create a new test set",
+                "parameters": [
+                    {
+                        "in": "formData",
+                        "name": "name",
+                        "description": "test set name",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "创建新测试集成功"
+                    },
+                    "500": {
+                        "description": "服务器错误"
+                    }
+                }
+            }
+        },
+        "/trainsets/": {
+            "post": {
+                "tags": [
+                    "trainsets"
+                ],
+                "description": "创建一个训练集",
+                "operationId": "TrainsetController.Create a new train set",
+                "parameters": [
+                    {
+                        "in": "formData",
+                        "name": "name",
+                        "description": "train set name",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "创建新训练集成功"
+                    },
+                    "500": {
+                        "description": "服务器错误"
+                    }
+                }
+            }
+        }
+    }
+}
