@@ -5,6 +5,7 @@
 # DataSet
 *.txt
 *.xls
+*.tmp
 
 # Model
 *.data
