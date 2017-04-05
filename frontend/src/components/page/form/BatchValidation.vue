@@ -2,8 +2,8 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-date"></i> 测试中心</el-breadcrumb-item>
-                <el-breadcrumb-item>提交批量测试</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-date"></i> 验证中心</el-breadcrumb-item>
+                <el-breadcrumb-item>提交批量验证</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="form-box">

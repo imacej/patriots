@@ -3,7 +3,7 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-date"></i> 数据集中心</el-breadcrumb-item>
-                <el-breadcrumb-item>新增数据集</el-breadcrumb-item>
+                <el-breadcrumb-item>新建训练集</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="form-box">

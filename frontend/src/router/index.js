@@ -9,82 +9,105 @@ export default new Router({
             redirect: '/login'
         },
         {
-            path: '/readme',
+            path: '/home',
             component: resolve => require(['../components/common/Home.vue'], resolve),
             children: [{
                     path: '/',
-                    component: resolve => require(['../components/page/Readme.vue'], resolve)
+                    redirect: 'readme'
                 },
                 {
-                    path: '/basetable',
+                    path: 'readme',
+                    component: resolve => require(['../components/page/Readme.vue'], resolve)
+                },
+                // FORM 用来新建各种数据
+                {
+                    path: 'create_trainset',
+                    component: resolve => require(['../components/page/form/Trainset.vue'], resolve)
+                },
+                {
+                    path: 'create_testset',
+                    component: resolve => require(['../components/page/form/Testset.vue'], resolve)
+                },
+                {
+                    path: 'create_model',
+                    component: resolve => require(['../components/page/form/Model.vue'], resolve)
+                },
+                {
+                    path: 'create_algorithm',
+                    component: resolve => require(['../components/page/form/Algorithm.vue'], resolve)
+                },
+                {
+                    path: 'create_validation',
+                    component: resolve => require(['../components/page/form/Validation.vue'], resolve)
+                },
+                {
+                    path: 'create_batch_validation',
+                    component: resolve => require(['../components/page/form/BatchValidation.vue'], resolve)
+                },
+                {
+                    path: 'create_user',
+                    component: resolve => require(['../components/page/form/User.vue'], resolve)
+                },
+                // Table 项目列表
+                {
+                    path: 'trainset_list',
+                    component: resolve => require(['../components/page/table/Trainset.vue'], resolve)
+                },
+                {
+                    path: 'testset_list',
+                    component: resolve => require(['../components/page/table/Testset.vue'], resolve)
+                },
+                {
+                    path: 'algorithm_list',
+                    component: resolve => require(['../components/page/table/Algorithm.vue'], resolve)
+                },
+                {
+                    path: 'model_list',
+                    component: resolve => require(['../components/page/table/Model.vue'], resolve)
+                },
+                {
+                    path: 'batch_validation_list',
+                    component: resolve => require(['../components/page/table/BatchValidation.vue'], resolve)
+                },
+                {
+                    path: 'user_list',
+                    component: resolve => require(['../components/page/table/User.vue'], resolve)
+                },
+
+                {
+                    path: 'basetable',
                     component: resolve => require(['../components/page/BaseTable.vue'], resolve)
                 },
                 {
-                    path: '/vuetable',
+                    path: 'vuetable',
                     component: resolve => require(['../components/page/VueTable.vue'], resolve) // vue-datasource组件
                 },
                 {
-                    path: '/baseform',
+                    path: 'baseform',
                     component: resolve => require(['../components/page/BaseForm.vue'], resolve)
                 },
                 {
-                    path: '/createdataset',
-                    component: resolve => require(['../components/page/FormCreateDataset.vue'], resolve)
-                },
-                {
-                    path: '/createmodel',
-                    component: resolve => require(['../components/page/FormCreateModel.vue'], resolve)
-                },
-                {
-                    path: '/createalgo',
-                    component: resolve => require(['../components/page/FormCreateAlgorithm.vue'], resolve)
-                },
-                {
-                    path: '/createtest',
-                    component: resolve => require(['../components/page/FormCreateTest.vue'], resolve)
-                },
-                {
-                    path: '/createbatchtest',
-                    component: resolve => require(['../components/page/FormCreateBatchTest.vue'], resolve)
-                },
-                {
-                    path: '/datasetlist',
-                    component: resolve => require(['../components/page/TableDataset.vue'], resolve)
-                },
-                {
-                    path: '/algolist',
-                    component: resolve => require(['../components/page/TableAlgorithm.vue'], resolve)
-                },
-                {
-                    path: '/modellist',
-                    component: resolve => require(['../components/page/TableModel.vue'], resolve)
-                },
-                {
-                    path: '/batchtestlist',
-                    component: resolve => require(['../components/page/TableBatchTest.vue'], resolve)
-                },
-                {
-                    path: '/settings',
+                    path: 'settings',
                     component: resolve => require(['../components/page/Settings.vue'], resolve) // vue-echarts-v3组件
                 },
                 {
-                    path: '/vueeditor',
+                    path: 'vueeditor',
                     component: resolve => require(['../components/page/VueEditor.vue'], resolve) // Vue-Quill-Editor组件
                 },
                 {
-                    path: '/markdown',
+                    path: 'markdown',
                     component: resolve => require(['../components/page/Markdown.vue'], resolve) // Vue-Quill-Editor组件
                 },
                 {
-                    path: '/upload',
+                    path: 'upload',
                     component: resolve => require(['../components/page/Upload.vue'], resolve) // Vue-Core-Image-Upload组件
                 },
                 {
-                    path: '/basecharts',
+                    path: 'basecharts',
                     component: resolve => require(['../components/page/BaseCharts.vue'], resolve) // vue-echarts-v3组件
                 },
                 {
-                    path: '/mixcharts',
+                    path: 'mixcharts',
                     component: resolve => require(['../components/page/MixCharts.vue'], resolve) // vue-echarts-v3组件
                 },
                 {

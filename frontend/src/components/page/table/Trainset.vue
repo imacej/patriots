@@ -3,7 +3,7 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-menu"></i> 数据集中心</el-breadcrumb-item>
-                <el-breadcrumb-item>数据集列表</el-breadcrumb-item>
+                <el-breadcrumb-item>训练集列表</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <p>类型：1-训练集，2-测试集</p>

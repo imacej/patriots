@@ -12,11 +12,11 @@
     "axios": "^0.15.3",
     "element-ui": "^1.2.2",
     "vue": "^2.1.10",
+    "vue-axios": "^2.0.1",
     "vue-core-image-upload": "^2.0.5",
     "vue-datasource": "^1.0.4",
     "vue-echarts-v3": "^1.0.3",
     "vue-quill-editor": "^1.1.1",
-    "vue-resource": "^1.2.1",
     "vue-router": "^2.2.0",
     "vue-simplemde": "^0.3.2"
   },
