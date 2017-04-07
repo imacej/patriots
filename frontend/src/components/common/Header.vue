@@ -23,14 +23,14 @@
         },
         computed:{
             username(){
-                let username = localStorage.getItem('ms_username');
+                let username = localStorage.getItem('username');
                 return username ? username : this.name;
             }
         },
         methods:{
             handleCommand(command) {
                 if(command == 'loginout'){
-                    localStorage.removeItem('ms_username')
+                    localStorage.removeItem('username')
                     this.$router.push('/login');
                 }
             }

@@ -17,5 +17,5 @@ type Algorithm struct {
 	Path   string    `json:"path"`                                     // 算法文件所在路径
 	Note   string    `json:"note" orm:"null"`                          // 算法备注
 	InTime time.Time `json:"intime" orm:"auto_now_add;type(datetime)"` // 创建时间
-	Model  *Model    `orm:"reverse(one)"`                              // 算法对应的模型
+	Model  *Model    `json:"model" orm:"reverse(one)"`                 // 算法对应的模型
 }
