@@ -26,3 +26,8 @@ func ResultTrainsetCreated() Result {
 func ResultTestsetCreated() Result {
 	return Result{Code: 200, Message: "测试集创建成功"}
 }
+
+//ResultAlgorithmCreated 算法创建成功
+func ResultAlgorithmCreated() Result {
+	return Result{Code: 200, Message: "算法创建成功，可以开始训练模型"}
+}

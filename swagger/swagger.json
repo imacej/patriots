@@ -15,6 +15,81 @@
     },
     "basePath": "/v1",
     "paths": {
+        "/algorithms/": {
+            "get": {
+                "tags": [
+                    "algorithms"
+                ],
+                "description": "获取算法列表",
+                "responses": {
+                    "200": {
+                        "description": "获取成功"
+                    },
+                    "500": {
+                        "description": "服务器错误"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "algorithms"
+                ],
+                "description": "创建一个新的算法，注，需要传入一个 json 字符串，自带的命令无法实现",
+                "responses": {
+                    "200": {
+                        "description": "创建成功"
+                    },
+                    "400": {
+                        "description": "客户端传入参数错误"
+                    },
+                    "500": {
+                        "description": "创建失败"
+                    }
+                }
+            }
+        },
+        "/algorithms/{id}": {
+            "get": {
+                "tags": [
+                    "algorithms"
+                ],
+                "description": "根据ID获取算法",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "对应 ID",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功"
+                    },
+                    "500": {
+                        "description": "服务器错误"
+                    }
+                }
+            }
+        },
+        "/algorithms/{id}/delete": {
+            "post": {
+                "tags": [
+                    "algorithms"
+                ],
+                "description": "删除指定算法",
+                "responses": {
+                    "200": {
+                        "description": "删除成功"
+                    },
+                    "500": {
+                        "description": "服务器错误"
+                    }
+                }
+            }
+        },
         "/status/": {
             "get": {
                 "tags": [

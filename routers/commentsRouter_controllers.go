@@ -6,6 +6,34 @@ import (
 
 func init() {
 
+	beego.GlobalControllerRouter["patriots/controllers:AlgorithmController"] = append(beego.GlobalControllerRouter["patriots/controllers:AlgorithmController"],
+		beego.ControllerComments{
+			Method: "CreateAlgorithm",
+			Router: `/`,
+			AllowHTTPMethods: []string{"post"},
+			Params: nil})
+
+	beego.GlobalControllerRouter["patriots/controllers:AlgorithmController"] = append(beego.GlobalControllerRouter["patriots/controllers:AlgorithmController"],
+		beego.ControllerComments{
+			Method: "GetAlgorithm",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"get"},
+			Params: nil})
+
+	beego.GlobalControllerRouter["patriots/controllers:AlgorithmController"] = append(beego.GlobalControllerRouter["patriots/controllers:AlgorithmController"],
+		beego.ControllerComments{
+			Method: "GetAlgorithmList",
+			Router: `/`,
+			AllowHTTPMethods: []string{"get"},
+			Params: nil})
+
+	beego.GlobalControllerRouter["patriots/controllers:AlgorithmController"] = append(beego.GlobalControllerRouter["patriots/controllers:AlgorithmController"],
+		beego.ControllerComments{
+			Method: "DeleteAlgorithm",
+			Router: `/:id/delete`,
+			AllowHTTPMethods: []string{"post"},
+			Params: nil})
+
 	beego.GlobalControllerRouter["patriots/controllers:StatusController"] = append(beego.GlobalControllerRouter["patriots/controllers:StatusController"],
 		beego.ControllerComments{
 			Method: "Login",

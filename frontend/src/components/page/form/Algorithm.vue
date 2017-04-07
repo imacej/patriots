@@ -20,7 +20,7 @@
 </template>
                     </el-input>
                 </el-form-item>
-                <el-form-item label="备注">
+                <el-form-item label="备注" prop="note">
                     <el-input type="textarea" v-model="form.note"></el-input>
                 </el-form-item>
                 <el-form-item>
@@ -65,23 +65,31 @@
         },
         methods: {
             submitForm(formName) {
+                var token = 'Bearer ' + localStorage.getItem('token')
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        this.$http.post('http://localhost:5000/algorithms',
-                            JSON.stringify(this.$data.form), {
+                        this.$http.post('http://localhost:12333/v1/algorithms',
+                            this.$data.form, {
                                 headers: {
+                                    'Authorization': token,
                                     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
                                 }
-                            }).then(
-                            function(response) { // 正确回调
+                            })
+                            .then((response) => { // 正确回调
                                 this.$notify({
-                                    title: response.data['title'],
-                                    message: response.data['info'],
+                                    title: response.data['code'],
+                                    message: response.data['message'],
                                     duration: 0,
                                 });
-                            },
-                            function(response) { // 错误回调
-                                this.$message.success('提交成功！');
+                                // 重置表单
+                                this.resetForm(formName)
+                            })
+                            .catch((error) => {
+                                this.$notify({
+                                    title: error.response.data['code'],
+                                    message: error.response.data['message'],
+                                    duration: 2000,
+                                });
                             });
                     } else {
                         console.log('error submit!!');

@@ -24,6 +24,11 @@ func init() {
 				&controllers.StatusController{},
 			),
 		),
+		beego.NSNamespace("/algorithms",
+			beego.NSInclude(
+				&controllers.AlgorithmController{},
+			),
+		),
 		beego.NSNamespace("/trainsets",
 			beego.NSInclude(
 				&controllers.TrainsetController{},
