@@ -14,18 +14,18 @@
                 <el-form-item label="算法" prop="algoid">
                     <el-select v-model="form.algoid" filterable placeholder="请选择">
                         <el-option
-                        v-for="ds in algorithms"
-                        :label="ds.label"
-                        :value="ds.value">
+                        v-for="algo in algorithms"
+                        :label="algo.label"
+                        :value="algo.value">
                         </el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="训练集" prop="trainsetid">
                     <el-select v-model="form.trainsetid" filterable placeholder="请选择">
                         <el-option
-                        v-for="ds in datasets"
-                        :label="ds.label"
-                        :value="ds.value">
+                        v-for="ts in trainsets"
+                        :label="ts.label"
+                        :value="ts.value">
                         </el-option>
                     </el-select>
                 </el-form-item>
@@ -54,7 +54,7 @@
                     name: '',
                     note: ''
                 },
-                datasets: [],
+                trainsets: [],
                 algorithms: [],
                 rules: {
                     name: [{
@@ -85,28 +85,35 @@
             }
         },
         mounted() {
-            this.getDatasets();
+            this.getTrainsets();
             this.getAlgorithms();
         },
         methods: {
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        this.$http.post('http://localhost:5000/models',
-                            JSON.stringify(this.$data.form), {
+                        this.$http.post('http://localhost:12333/v1/models',
+                            this.$data.form, {
                                 headers: {
+                                    'Authorization': token,
                                     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
                                 }
-                            }).then(
-                            function(response) { // 正确回调
+                            })
+                            .then((response) => { // 正确回调
                                 this.$notify({
-                                    title: response.data['title'],
-                                    message: response.data['info'],
+                                    title: response.data['code'],
+                                    message: response.data['message'],
                                     duration: 0,
                                 });
-                            },
-                            function(response) { // 错误回调
-                                this.$message.success('提交成功！');
+                                // 重置表单
+                                this.resetForm(formName)
+                            })
+                            .catch((error) => {
+                                this.$notify({
+                                    title: error.response.data['code'],
+                                    message: error.response.data['message'],
+                                    duration: 2000,
+                                });
                             });
                     } else {
                         console.log('error submit!!');
@@ -117,39 +124,41 @@
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             },
-            getDatasets() {
-                this.$http
-                    .get('http://localhost:5000/datasets?type=train')
-                    .then(response => {
-                        this.datasets = response.body.map(ds => {
+            getTrainsets() {
+                this.$http.get('http://localhost:12333/v1/trainsets', {
+                        headers: {
+                            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                        }
+                    })
+                    .then((response) => {
+                        this.trainsets = response.data.map(ts => {
                             return {
-                                label: ds.dname,
-                                value: ds.id
+                                label: ts.name,
+                                value: ts.id
                             }
                         })
-                        this.count = this.datasets.length
-                    }, response => {
-                        this.datasets = []
+                    })
+                    .catch((error) => {
+                        this.trainsets = []
                     })
             },
             getAlgorithms() {
-                this.$http
-                    .get('http://localhost:5000/algorithms')
-                    .then(response => {
-                        this.algorithms = response.body.map(algo => {
+                this.$http.get('http://localhost:12333/v1/algorithms', {
+                        headers: {
+                            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                        }
+                    })
+                    .then((response) => {
+                        this.algorithms = response.data.map(algo => {
                             return {
-                                label: algo.aname,
+                                label: algo.name,
                                 value: algo.id
                             }
                         })
-                        this.count = this.algorithms.length
-                    }, response => {
-                        this.algorithms = []
-                        this.$message({
-                            type: 'info',
-                            message: '请求发送失败'
-                        });
                     })
+                    .catch((error) => {
+                        this.algorithms = []
+                    })  
             }
         }
     }
