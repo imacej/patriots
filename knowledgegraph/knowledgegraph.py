@@ -232,9 +232,9 @@ def draw_tier123():
 
     # nodes
     nx.draw_networkx_nodes(G,pos,node_size=15,node_color='r',alpha=0.4)
-    nx.draw_networkx_nodes(G,pos,nodelist=[u'贝贝'],node_size=800,node_color='r')
-    nx.draw_networkx_nodes(G,pos,nodelist=[u'奶粉',u'尿布'],node_size=400, node_color='b')
-    nx.draw_networkx_nodes(G,pos,nodelist=[u'尿布类型',u'品牌',u'规格'],node_size=200,node_color='g')
+    nx.draw_networkx_nodes(G,pos,nodelist=[u'贝贝'],node_size=1000,node_color='r')
+    nx.draw_networkx_nodes(G,pos,nodelist=[u'奶粉',u'尿布'],node_size=700, node_color='b')
+    nx.draw_networkx_nodes(G,pos,nodelist=[u'尿布类型',u'品牌',u'规格',u'奶粉类型',u'国家'],node_size=400,node_color='g')
 
     plt.axis('off')
     #plt.savefig("knowledge_graph.png",dpi=200)
