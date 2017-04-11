@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+
+
+def filter():
+  with open("data/beibei100.txt") as f:
+    line = f.readline()
+    while line: # 针对没一行来操作
+      print line,
+      line = f.readline()
+
+if __name__=='__main__':
+  filter()
