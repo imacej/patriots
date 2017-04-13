@@ -245,4 +245,5 @@ def draw_tier123():
 
 if __name__ == '__main__':
     draw_tier123()
+    #draw_tier3()
 
