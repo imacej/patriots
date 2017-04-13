@@ -38,7 +38,7 @@ lstm_batch_size = 16
 lstm_epochs = 15
 
 datadir = ''
-modeldir = ''
+modeldir = '../model/lstm_didi'
 testdir = ''
 
 # 加载训练文件
@@ -237,6 +237,33 @@ def batchtest(filepath):
       f.close() # 确保关闭
   return correct_count, test_count
 
+# 批量预测，减少内存使用，传入一个字符串数组
+def predict_arr(arr):
+  dict = loaddict()
+  
+  probas = []
+  with open(modeldir + '/lstm.yml', 'r') as f:
+    yaml_string = yaml.load(f)
+  model = model_from_yaml(yaml_string)
+  model.load_weights(modeldir + '/lstm.h5')
+  model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['accuracy'])
+
+  for s in arr:
+    textarr = list(jieba.cut(s))
+    textvec = []
+    add = 1
+    for item in textarr:
+      # 如果不在词典里，则直接丢弃（因为出现的次数也非常少，不考虑）
+      if item in dict['id']:
+        textvec.append(dict['id'][item])
+    textvec = pd.Series(textvec)  
+    textvec = sequence.pad_sequences([textvec], maxlen=maxlen)
+    
+    proba = model.predict_proba(textvec, verbose=0)
+    probas.append(proba[0][0])
+
+  return probas
+
 
 def predict(text):
   print('Loading Dict Data..')
@@ -268,11 +295,15 @@ def predict(text):
   # 至此模型已经载入完成，可以进行预测
   #classes = model.predict_classes(textvec, verbose=1)
   proba = model.predict_proba(textvec, verbose=0)
-  for s in proba:
-    if s[0] > 0.5:
-      print('positive ' + str(s[0]) + ' ' + text)
-    else:
-      print('negative ' + str(s[0]) + ' ' + text)
+  # 这里因为知识图谱暂时改变输入格式
+  #for s in proba:
+  #  if s[0] > 0.5:
+  #    print('positive ' + str(s[0]) + ' ' + text)
+  #  else:
+  #    print('negative ' + str(s[0]) + ' ' + text)
+  return proba[0][0]
+
+
 
 
 if __name__=='__main__':
