@@ -80,14 +80,6 @@ export default new Router({
                 },
 
                 {
-                    path: 'basetable',
-                    component: resolve => require(['../components/page/other/BaseTable.vue'], resolve)
-                },
-                {
-                    path: 'baseform',
-                    component: resolve => require(['../components/page/other/BaseForm.vue'], resolve)
-                },
-                {
                     path: 'settings',
                     component: resolve => require(['../components/page/Settings.vue'], resolve) // vue-echarts-v3组件
                 },

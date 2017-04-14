@@ -5,7 +5,7 @@
                 <i class="el-icon-view"></i>系统概况
             </el-menu-item>
             <el-submenu index="1">
-                <template slot="title"><i class="el-icon-check"></i>报表中心</template>
+                <template slot="title"><i class="el-icon-document"></i>报表中心</template>
                 <el-menu-item index="beibei_milk_powder">贝贝奶粉报表</el-menu-item>
             </el-submenu>
             <el-submenu index="2">
