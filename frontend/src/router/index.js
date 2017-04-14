@@ -19,6 +19,11 @@ export default new Router({
                     path: 'readme',
                     component: resolve => require(['../components/page/Readme.vue'], resolve)
                 },
+                // 全新设计
+                {
+                    path: 'beibei_milk_powder',
+                    component: resolve => require(['../components/page/report/BBMilkPowder.vue'], resolve)
+                },
                 // FORM 用来新建各种数据
                 {
                     path: 'create_trainset',
@@ -76,15 +81,11 @@ export default new Router({
 
                 {
                     path: 'basetable',
-                    component: resolve => require(['../components/page/BaseTable.vue'], resolve)
-                },
-                {
-                    path: 'vuetable',
-                    component: resolve => require(['../components/page/VueTable.vue'], resolve) // vue-datasource组件
+                    component: resolve => require(['../components/page/other/BaseTable.vue'], resolve)
                 },
                 {
                     path: 'baseform',
-                    component: resolve => require(['../components/page/BaseForm.vue'], resolve)
+                    component: resolve => require(['../components/page/other/BaseForm.vue'], resolve)
                 },
                 {
                     path: 'settings',
@@ -92,23 +93,23 @@ export default new Router({
                 },
                 {
                     path: 'vueeditor',
-                    component: resolve => require(['../components/page/VueEditor.vue'], resolve) // Vue-Quill-Editor组件
+                    component: resolve => require(['../components/page/other/VueEditor.vue'], resolve) // Vue-Quill-Editor组件
                 },
                 {
                     path: 'markdown',
-                    component: resolve => require(['../components/page/Markdown.vue'], resolve) // Vue-Quill-Editor组件
+                    component: resolve => require(['../components/page/other/Markdown.vue'], resolve) // Vue-Quill-Editor组件
                 },
                 {
                     path: 'upload',
-                    component: resolve => require(['../components/page/Upload.vue'], resolve) // Vue-Core-Image-Upload组件
+                    component: resolve => require(['../components/page/other/Upload.vue'], resolve) // Vue-Core-Image-Upload组件
                 },
                 {
                     path: 'basecharts',
-                    component: resolve => require(['../components/page/BaseCharts.vue'], resolve) // vue-echarts-v3组件
+                    component: resolve => require(['../components/page/other/BaseCharts.vue'], resolve) // vue-echarts-v3组件
                 },
                 {
                     path: 'mixcharts',
-                    component: resolve => require(['../components/page/MixCharts.vue'], resolve) // vue-echarts-v3组件
+                    component: resolve => require(['../components/page/other/MixCharts.vue'], resolve) // vue-echarts-v3组件
                 },
                 {
                     path: '*', //其他页面，强制跳转到登录页面
