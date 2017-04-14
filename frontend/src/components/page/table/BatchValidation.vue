@@ -76,7 +76,7 @@
                 return row.tag === value;
             },
             handleStatus(index, row) {
-                this.$http.get('http://localhost:5000/tests/' + this.models[index].id + '/result')
+                this.$http.get(API_ROOT + 'tests/' + this.models[index].id + '/result')
                     .then(
                         function(response) { // 正确回调
                             this.resulttext = response.data['result']
@@ -87,7 +87,7 @@
                         });
             },
             handleLog(index, row) {
-                this.$http.get('http://localhost:5000/tests/' + this.models[index].id + '/log')
+                this.$http.get(API_ROOT + 'tests/' + this.models[index].id + '/log')
                     .then(
                         function(response) { // 正确回调
                             this.logtext = response.data['log']
@@ -103,7 +103,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.$http.post('http://localhost:5000/tests/' + this.models[index].id + '/start', {}, {
+                    this.$http.post(API_ROOT + 'tests/' + this.models[index].id + '/start', {}, {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
                         }
@@ -133,7 +133,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.$http.post('http://localhost:5000/tests/' + this.models[index].id + '/delete', {}, {
+                    this.$http.post(API_ROOT + 'tests/' + this.models[index].id + '/delete', {}, {
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
                             }

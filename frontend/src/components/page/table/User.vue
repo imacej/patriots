@@ -63,7 +63,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.$http.post('http://localhost:5000/datasets/' + this.datasets[index].id + '/delete', {}, {
+                    this.$http.post(API_ROOT + 'datasets/' + this.datasets[index].id + '/delete', {}, {
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
                             }
@@ -90,7 +90,7 @@
             },
             getDatasets() {
                 this.$http
-                    .get('http://localhost:5000/datasets')
+                    .get(API_ROOT + 'datasets')
                     .then(response => {
                         this.datasets = response.body
                         this.count = this.datasets.length

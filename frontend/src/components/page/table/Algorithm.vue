@@ -65,7 +65,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.$http.post('http://localhost:12333/v1/algorithms/' + this.list[index].id + '/delete', {}, {
+                    this.$http.post(API_ROOT + 'algorithms/' + this.list[index].id + '/delete', {}, {
                             headers: {
                                 'Authorization': 'Bearer ' + localStorage.getItem('token'),
                                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -93,7 +93,7 @@
                 });
             },
             getAlgorithmList() {
-                this.$http.get('http://localhost:12333/v1/algorithms', {
+                this.$http.get(API_ROOT + 'algorithms', {
                         headers: {
                             'Authorization': 'Bearer ' + localStorage.getItem('token'),
                         }

@@ -69,7 +69,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.$http.post('http://localhost:12333/v1/testsets/' + this.list[index].id + '/delete', {}, {
+                    this.$http.post(API_ROOT + 'testsets/' + this.list[index].id + '/delete', {}, {
                             headers: {
                                 'Authorization': 'Bearer ' + localStorage.getItem('token'),
                                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -97,7 +97,7 @@
                 });
             },
             getTestsetList() {
-                this.$http.get('http://localhost:12333/v1/testsets', {
+                this.$http.get(API_ROOT + 'testsets', {
                         headers: {
                             'Authorization': 'Bearer ' + localStorage.getItem('token'),
                         }

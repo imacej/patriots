@@ -92,7 +92,7 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        this.$http.post('http://localhost:12333/v1/models',
+                        this.$http.post(API_ROOT + 'models',
                             this.$data.form, {
                                 headers: {
                                     'Authorization': token,
@@ -125,7 +125,7 @@
                 this.$refs[formName].resetFields();
             },
             getTrainsets() {
-                this.$http.get('http://localhost:12333/v1/trainsets', {
+                this.$http.get(API_ROOT + 'trainsets', {
                         headers: {
                             'Authorization': 'Bearer ' + localStorage.getItem('token'),
                         }
@@ -143,7 +143,7 @@
                     })
             },
             getAlgorithms() {
-                this.$http.get('http://localhost:12333/v1/algorithms', {
+                this.$http.get(API_ROOT + 'algorithms', {
                         headers: {
                             'Authorization': 'Bearer ' + localStorage.getItem('token'),
                         }

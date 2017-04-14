@@ -99,7 +99,7 @@
             },
             getDatasets() {
                 this.$http
-                    .get('http://localhost:5000/datasets?type=test')
+                    .get(API_ROOT + 'datasets?type=test')
                     .then(response => {
                         this.datasets = response.body.map(ds => {
                             return {
@@ -114,7 +114,7 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        this.$http.post('http://localhost:5000/tests',
+                        this.$http.post(API_ROOT + 'tests',
                             JSON.stringify(this.$data.form), {
                                 headers: {
                                     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'

@@ -46,7 +46,7 @@
                 self.$refs[formName].validate((valid) => {
                     if (valid) {
                         // 这里先发送请求
-                        this.$http.post('http://localhost:12333/v1/status/login',
+                        this.$http.post(API_ROOT + 'status/login',
                                 this.$data.form, {
                                     headers: {
                                         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'

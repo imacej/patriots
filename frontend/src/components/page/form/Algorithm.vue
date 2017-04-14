@@ -68,7 +68,7 @@
                 var token = 'Bearer ' + localStorage.getItem('token')
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        this.$http.post('http://localhost:12333/v1/algorithms',
+                        this.$http.post(API_ROOT + 'algorithms',
                             this.$data.form, {
                                 headers: {
                                     'Authorization': token,

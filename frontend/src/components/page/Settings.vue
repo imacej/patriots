@@ -110,7 +110,7 @@
             },
             retrieveLibraries() {
                 this.$http
-                    .get('http://localhost:12333/v1/api/libraries', {
+                    .get(API_ROOT + 'libraries', {
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
                         }

@@ -69,7 +69,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    this.$http.post('http://localhost:12333/v1/trainsets/' + this.list[index].id + '/delete', {}, {
+                    this.$http.post(API_ROOT + 'trainsets/' + this.list[index].id + '/delete', {}, {
                             headers: {
                                 'Authorization': 'Bearer ' + localStorage.getItem('token'),
                                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -97,7 +97,7 @@
                 });
             },
             getTrainsetList() {
-                this.$http.get('http://localhost:12333/v1/trainsets', {
+                this.$http.get(API_ROOT + 'trainsets', {
                         headers: {
                             'Authorization': 'Bearer ' + localStorage.getItem('token'),
                         }
