@@ -1,6 +1,10 @@
 #coding=utf-8
 import json
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 class Entity:
     '表示实体的类'
 
@@ -54,15 +58,15 @@ class Record:
         print "情感:", self.sentiment
         print "分词:",
         for w in self.words:
-            print w,
+            print w.encode('utf-8'),
         print ''
         print '关键词:',
         for w in self.keywords:
-            print w,
+            print w.encode('utf-8'),
         print ''
         print '知识图谱节点:',
         for w in self.knodes:
-            print w,
+            print w.encode('utf-8'),
         print ''
 
 

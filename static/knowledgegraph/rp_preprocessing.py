@@ -14,15 +14,6 @@ records = []
 knodes = []
 querys = []
 
-
-def load_knowledge_dict():
-  # 从知识图谱中生成倒排索引，保存成词典
-  # 暂时简单粗暴从已有的词典载入
-  f = open("data/knowledge_dict.txt")
-  for line in f:
-    arr = line.split(' ')
-    knodes.append(arr[0])
-
 def load_faq_dict():
   f= open("data/beibei_faq.txt")
   for line in f:
@@ -63,8 +54,6 @@ def filter():
       doctype = faqtable.get(record.docid, "unknown")
       if (doctype != "unknown"):
         docs = doctype.split(' ')
-        if (docs[1].find("售前") == -1 and docs[1].find("售中") == -1 and docs[1].find("售后") == -1):
-          continue # 不在需要统计的类型中
         record.doctype = docs[1]
         record.doctext = docs[0]
       else: # 如果没有对应类型，则直接过滤
@@ -82,16 +71,11 @@ def filter():
       # 名词 n - 人名 nr, 地名 ns, 机构团体 nt， 其他专有名词 nz
       # 动词 v - 副动词 vd， 名动词 vn
       record.keywords = jieba.analyse.extract_tags(record.query, topK=5, withWeight=False, allowPOS=('n','v','nr','ns','nt','nz','vd','vn'))
-      # 5)匹配知识库节点
-      for word in knodes:
-        if (record.query.find(word) != -1):
-          record.knodes.append(word)
-      
+     
       # 6)把句子加入到数组中，批量进行情感预测
       querys.append(record.query)
       
       # 添加到集合中
-      record.displayRecord()
       records.append(record)
       #print arr[0][1:-2], arr[1][5:-1], arr[2][5:-1], arr[6][6:-1], arr[17], arr[20][9:-1], arr[-1][7:-1]
    
@@ -102,7 +86,7 @@ def filter():
     records[i].sentiment = v
 
   print "有效数据有", len(records)
-  with open("data/records.data", 'wb') as f:
+  with open("data/rp_records.data", 'wb') as f:
     pickle.dump(records,f, True)
 
   # 把数据持久化一下，保存成 json 格式
@@ -111,7 +95,6 @@ def filter():
   #     f.write(json.dumps((obj2dict(records[0]))))
   #     f.write('\n')
   print len(iptable)
-  print len(knodes)
   print len(faqtable)
   print len(querys)
   print "预处理完成"
@@ -122,6 +105,5 @@ if __name__=='__main__':
   jieba.load_userdict('data/knowledge_dict.txt')
   load_ip_dict() # 载入 ip 表
   load_faq_dict() # 载入 faq 表
-  load_knowledge_dict() # 载入知识图谱节点表
 
   filter()

@@ -2,6 +2,10 @@
 
 python 测试代码，并没有工程化到 patroit 平台中
 
+## 文件说明
+
++ `kg_preprocessing.py` 知识图谱预处理
++ `rp_preprocessing.py` 针对电商大类的预处理
 
 ## 知识图谱建立
 

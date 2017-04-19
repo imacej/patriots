@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 from entity import *
 import cPickle as pickle
- 
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 # 先做奶粉
 
@@ -16,19 +19,25 @@ def hotwords(records, topK):
                 word_dict[w] = 1
     result = sorted(word_dict.items(), key=lambda d: -d[1])[:topK]
     for re in result:
-        print re[0],re[1] 
+        print re[0].encode('utf-8'),re[1]
 
 # 统计传入 records 的情感，输出 中性 / 消极
 def sentiment(records):
     mid = 0
     neg = 0
+    # 给 records 排一下顺序
+    result = sorted(records, key=lambda r: r.sentiment)[:20]
     for r in records:
+        
         if (r.sentiment < 0.5):
             neg = neg + 1
         else:
             mid = mid + 1
     print "中性",mid,"/",neg,"消极"
     print "消极率 %.2f %%" %(float(neg)/(float(neg)+float(mid))*100)
+    for r in result:
+        print r.query, r.sentiment
+
 
 
 def locationdis(records):
@@ -102,6 +111,7 @@ if __name__=='__main__':
             mp_pos_count = mp_pos_count + 1
             # r.displayRecord()
     print "含有位置的奶粉记录", mp_pos_count ,"/", mp_count
+    
     locationdis(mp_records)
 
     showline()
