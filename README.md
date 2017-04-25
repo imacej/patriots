@@ -1,10 +1,8 @@
-# Patriot
+# Patriots
 
-Patriot 是一个基于机器学习、数据挖掘、知识图谱的个人大数据管理平台
+Patriots 是一个基于机器学习、数据挖掘、知识图谱的个人大数据管理平台
 
-Patriot is
-
-Data Mining & Machine Learning / Deep Learning Platform with Web UI
+"Patriots" is a Personal Big Data Management Platform for Web / Mobile / WechatApp based on data mining, machine learning & knowledge graph techniques.
 
 ## 技术栈
 
@@ -16,7 +14,8 @@ Data Mining & Machine Learning / Deep Learning Platform with Web UI
     + keras 2.0.1
 + 前端
     + vue.js
-    + element.ui
+    + element.ui - web
+    + vux - mobile
 + Python 包
     + gensim 0.13.3
     + jieba 0.38
