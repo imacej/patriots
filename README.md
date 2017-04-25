@@ -1,6 +1,8 @@
-# Patriots
+# Patriot
 
-一个集机器学习、数据挖掘等各类人工智能实践的 web 管理系统
+Patriot 是一个基于机器学习、数据挖掘、知识图谱的个人大数据管理平台
+
+Patriot is
 
 Data Mining & Machine Learning / Deep Learning Platform with Web UI
 
