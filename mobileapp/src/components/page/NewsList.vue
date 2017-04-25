@@ -4,7 +4,7 @@
     <scroller lock-x scrollbar-y height="500px" :bounce=false :scrollbarY="false" ref="scroller">
       <div class="news-wrap">
         <cell v-for="x in Objlist"  :title="x.title" :link="{path: '/newsdetail',query:{id:x.id,tag:'资讯'}}" :inline-desc='x.body'>
-          <img class="ic_img"  slot="icon" src="../../assets/image/ic_label_today.png">
+          <img class="ic_img"  slot="icon" src="../../assets/images/ic_label_today.png">
           <div>
             <span class="pubdate">{{x.pub_date}}</span>
           </div>

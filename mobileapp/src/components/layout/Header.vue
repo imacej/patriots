@@ -2,7 +2,7 @@
   <tabbar class="tabbar">
     <div class="title">{{tag}}</div>
     <tabbar-item class="search">
-      <img slot="icon" src="../../assets/image/actionbar_search_icon.png">
+      <img slot="icon" src="../../assets/images/actionbar_search_icon.png">
     </tabbar-item>
   </tabbar>
 
