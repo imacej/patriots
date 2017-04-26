@@ -3,7 +3,8 @@
 var app = getApp()
 Page({
   data: {
-    motto: 'Hello World',
+    motto: 'bzs = 不周山',
+    description: '学习知识就像不周山，永远不会有『周全』的一天，是为活到老，学到老。',
     userInfo: {}
   },
   //事件处理函数

@@ -1,6 +1,9 @@
 {
   "pages":[
-    "pages/index/index",
+    "pages/bzs/bzs",
+    "pages/babel/babel",
+    "pages/cgh/cgh",
+    "pages/bmm/bmm",
     "pages/logs/logs"
   ],
   "window":{
@@ -8,5 +11,33 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle":"black"
-  }
+  },
+  "tabBar": {
+    "color": "#dddddd",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [{
+      "pagePath": "pages/bzs/bzs",
+      "iconPath": "images/icon_normal.png",
+      "selectedIconPath": "images/icon_pressed.png",
+      "text": "不周山"
+    }, {
+      "pagePath": "pages/babel/babel",
+      "iconPath": "images/icon_normal.png",
+      "selectedIconPath": "images/icon_pressed.png",
+      "text": "通天塔"
+    }, {
+      "pagePath": "pages/cgh/cgh",
+      "iconPath": "images/icon_normal.png",
+      "selectedIconPath": "images/icon_pressed.png",
+      "text": "好望角"
+    }, {
+      "pagePath": "pages/bmm/bmm",
+      "iconPath": "images/icon_normal.png",
+      "selectedIconPath": "images/icon_pressed.png",
+      "text": "书影音"
+    }]
+  },
+  "debug": true
 }

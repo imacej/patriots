@@ -3,12 +3,12 @@
     <swiper :list="imgs" auto style="width:100%;margin:0 auto;" height="120px" dots-class="custom-bottom" dots-position="center"></swiper>
     <scroller lock-x scrollbar-y height="500px" :bounce=false :scrollbarY="false" ref="scroller">
       <div class="news-wrap">
-        <cell v-for="x in Objlist"  :title="x.title" :link="{path: '/newsdetail',query:{id:x.id,tag:'资讯'}}" :inline-desc='x.body'>
+        <!--<cell v-for="x in Objlist"  :title="x.title" :link="{path: '/newsdetail',query:{id:x.id,tag:'资讯'}}" :inline-desc='x.body'>
           <img class="ic_img"  slot="icon" src="../../assets/images/ic_label_today.png">
           <div>
             <span class="pubdate">{{x.pub_date}}</span>
           </div>
-        </cell>
+        </cell>-->
       </div>
     </scroller>
   </div>
@@ -72,7 +72,7 @@
       Swiper
     },
     created () {
-      this.getList()
+      //this.getList()
     },
     methods:{
       async getList() {

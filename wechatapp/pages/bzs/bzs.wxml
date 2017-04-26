@@ -5,6 +5,8 @@
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </view>
   <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+    <button>{{motto}}</button>
+    <progress percent="60" color="pink" />
+    <text class="user-motto">{{description}}</text>
   </view>
 </view>
