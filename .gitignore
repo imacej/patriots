@@ -37,6 +37,8 @@ static/topicmodel/lda_result
 static/topicmodel/lsi_result
 static/topicmodel/dict
 
+swagger
+
 # result
 *.zip
 
@@ -112,3 +114,4 @@ _testmain.go
 *.prof
 
 patriots
+
