@@ -1,3 +1,4 @@
 *.wxml linguist-language=xml
 *.wxss linguist-language=css
 *.md linguist-language=go
+*.do linguist-language=go
