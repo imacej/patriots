@@ -1,43 +1,68 @@
 {
-  "pages":[
-    "pages/bzs/bzs",
-    "pages/babel/babel",
-    "pages/cgh/cgh",
-    "pages/bmm/bmm",
-    "pages/logs/logs"
+  "pages": [
+    "pages/popular/popular",
+    "pages/coming/coming",
+    "pages/top/top",
+    "pages/search/search",
+    "pages/filmDetail/filmDetail",
+    "pages/personDetail/personDetail",
+    "pages/searchResult/searchResult",
+    "pages/my/my",
+    "pages/favorite/favorite",
+    "pages/history/history",
+    "pages/shake/shake",
+    "pages/gallery/gallery",
+    "pages/setting/setting",
+    "pages/skin/skin",
+    "pages/personInfo/personInfo",
+    "pages/editPersonInfo/editPersonInfo",
+    "pages/systemInfo/systemInfo",
+    "pages/about/about",
+    "pages/location/location"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+  "window": {
+    "navigationBarBackgroundColor": "#47a86c",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "电影推荐",
+    "backgroundColor": "#fff",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
-    "color": "#dddddd",
-    "selectedColor": "#3cc51f",
-    "borderStyle": "white",
+    "color": "#686868",
+    "selectedColor": "#47a86c",
     "backgroundColor": "#ffffff",
-    "list": [{
-      "pagePath": "pages/bzs/bzs",
-      "iconPath": "images/icon_normal.png",
-      "selectedIconPath": "images/icon_pressed.png",
-      "text": "不周山"
-    }, {
-      "pagePath": "pages/babel/babel",
-      "iconPath": "images/icon_normal.png",
-      "selectedIconPath": "images/icon_pressed.png",
-      "text": "通天塔"
-    }, {
-      "pagePath": "pages/cgh/cgh",
-      "iconPath": "images/icon_normal.png",
-      "selectedIconPath": "images/icon_pressed.png",
-      "text": "好望角"
-    }, {
-      "pagePath": "pages/bmm/bmm",
-      "iconPath": "images/icon_normal.png",
-      "selectedIconPath": "images/icon_pressed.png",
-      "text": "书影音"
-    }]
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/popular/popular",
+        "iconPath": "dist/images/popular_icon.png",
+        "selectedIconPath": "dist/images/popular_active_icon.png",
+        "text": "热映"
+      },
+      {
+        "pagePath": "pages/coming/coming",
+        "iconPath": "dist/images/coming_icon.png",
+        "selectedIconPath": "dist/images/coming_active_icon.png",
+        "text": "待映"
+      },
+      {
+        "pagePath": "pages/top/top",
+        "iconPath": "dist/images/top_icon.png",
+        "selectedIconPath": "dist/images/top_active_icon.png",
+        "text": "口碑"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "dist/images/my_icon.png",
+        "selectedIconPath": "dist/images/my_active_icon.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
   },
   "debug": true
 }
