@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/element-ui/1.3.2/theme-default/index.css">
+    <title>追一情感分析 Demo</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>追一情感分析 Demo</h1>
+        <p>单个测试</p>
+        <el-radio class="radio" v-model="modeltype" label="jd">商品评论情感模型</el-radio>
+        <el-radio class="radio" v-model="modeltype" label="weibo">微博情感模型</el-radio>
+        <el-row>
+            <el-col :span="17">
+                <el-input v-model="input" placeholder="请输入内容"></el-input>
+            </el-col>
+        </el-row>
+
+        <el-row>
+            <el-button @click="randomQuery">随机问句</el-button>
+            <el-button type="primary" @click="submitOneText" @keyup.enter.native="submitOneText" >提交测试</el-button>
+        </el-row>
+
+
+        <!--<p>批量测试：</p>
+        <el-button @click="refreshText">刷新</el-button>
+        <ol>
+            <li v-for="t in texts">
+                <span v-text="t"></span>
+            </li>
+        </ol>
+        <el-button @click="submitTexts">提交批量测试</el-button>-->
+
+    </div>
+</body>
+
+<!-- 先引入 Vue -->
+<script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.16.1/axios.min.js"></script>
+<!-- 引入组件库 -->
+<script src="https://cdn.bootcss.com/element-ui/1.3.2/index.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            visible: false,
+            modeltype: 'jd',
+            input: '',
+            texts: [
+                '点了链接，不是需要拼的产品，而是页面',
+                '我下单没成功，钱什么时候推到账',
+                '对到永乐店就对了，怎么又发到漷县去了',
+                '我买了两个洗澡盆，怎么只到一个！！！！！',
+                '如何办理金卡',
+                '确实不错的一款手机 我是买来作备用机的 主要看中它的电池容量大，流畅度也不错。 我的iphone6sp耗电很快，不带充电宝都不敢出门。 总的来说给好评！！！',
+                '设像头用保护膜贴住，收货时没撕开保护膜看一下，原来连设像头都破了，这就是京东呀！',
+                '手机系统有问题，说是可以拓展128GB,我买了张32新卡插电话里，电话提示检查SD卡。无法识别，每次开机都会提示。',
+                '开箱后明显的从新封塑的痕迹，保护膜上有灰尘气泡，嫌麻烦懒得退货了。',
+                '样子不错，只不过我玩了一局王者荣耀有点卡，手机发热太厉害了',
+                '装手机的盒子有点难打开，手机有点卡，打字的时候触屏键盘不是很好用',
+                '不及红米系列。',
+                '总体来说比较符合千元机的有个水准，还不错，可以给四星。',
+                '看着比note3强点 啥时候能不打磨联发科啊',
+                '手机一如既往的快。跟京东速度一样。早上下单下午到，快递小哥服务好。6g大运存。高通653 速度6到飞起。妈妈再也不用担心我游戏不够畅快。',
+                '物流很快，这个价位算是差不多了，虽然没赶上特价秒杀?，后期用用再看！',
+                '这个快递没话说，京东就是快，东西不错，很划算，五一折扣秒杀买的',
+                '是特别差的一次购物，颜色要求高的不要买，还是买苹果吧！',
+                '感觉一般般，声音很大，速度一般。',
+                '妈的打开任何一个文件都要停半天',
+                '质量 服务 物流各方面都很不错，继续努力',
+                '收到货后很高兴能买到这么实惠质量又好的。大赞～'
+                ]
+        },
+        methods: {
+            refreshText() {
+                this.visible = true;
+                console.log(this.texts)
+            },
+            randomQuery() {
+                random = Math.random()* this.texts.length;
+                this.input = this.texts[Math.floor(random)]
+            },
+            submitOneText() {
+                if (this.input.length < 1) {
+                    this.$notify.error({
+                        title: "输入不能为空",
+                        message: "请输入测试句子",
+                        duration: 2000
+                    })
+                } else {
+                    var that = this;
+                    if (this.modeltype === 'weibo') {
+                        axios.get("http://211.159.169.220:8777/weibosenti?query=" + this.input)
+                        .then(function (res) {
+                            result = eval(res.data)
+                            that.$notify.success({
+                                title: result.sa + " " + result.value,
+                                message: result.query,
+                                duration: 0
+                            })
+                            that.input = ''
+                        })
+                        .catch(function (err) {
+                            console.log(err);
+                        })
+                    } else if (this.modeltype === 'jd') {
+                        axios.get("http://211.159.169.220:8777/sentiment?query=" + this.input)
+                        .then(function (res) {
+                            result = eval(res.data)
+                            that.$notify.success({
+                                title: result.sa + " " + result.value,
+                                message: result.query,
+                                duration: 0
+                            })
+                            that.input = ''
+                        })
+                        .catch(function (err) {
+                            console.log(err);
+                        })
+                    }
+                    
+                }
+
+
+            },
+            submitTexts() {
+                console.log("提交批量测试")
+            },
+        }
+    })
+
+</script>
+
+
+
+</html>

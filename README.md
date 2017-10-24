@@ -1,8 +1,20 @@
 # Patriots
 
-Patriots 是一个基于机器学习、数据挖掘、知识图谱的个人大数据管理平台
+Patriots 是一个基于机器学习、数据挖掘、知识图谱的个人大数据管理平台。包含我工作相关的各类相关资料，后面会逐步补完成为一个『大一统』项目。
 
 "Patriots" is a Personal Big Data Management Platform for Web / Mobile / WechatApp based on data mining, machine learning & knowledge graph techniques.
+
+注：目前还在代码整理部分，这段时间基本重构了整个项目，需要些时间整理
+
+## 目录说明
+
++ `archive`: 项目归档
++ `frontend`: 前端代码
++ `note`: 工程笔记
++ `mini_project`: 可以在平台上执行的迷你项目（主要基于 python）
++ `script`: 项目相关脚本
++ `server`: 后端代码
++ `wechat_app`: 微信小程序代码
 
 ## 技术栈
 

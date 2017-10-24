@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 引入样式 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <h1>追一情感分析 Demo</h1>
+</head>
+
+<body>
+    <div id="app">
+        <mt-field label="测试问句" placeholder="可以在这里输入情感测试问句" type="textarea" rows="5" v-model="input"></mt-field>
+        <mt-radio title="模型选择" v-model="modeltype" :options="[{ label:'商品评论情感模型', value: 'jd'} , { label:'微博情感模型', value:'weibo' }, { label:'滴滴情感模型', value:'didi' }]">
+        </mt-radio>
+        <mt-cell title="" label="">
+            <mt-button @click.native="randomQuery">随机问句</mt-button>
+            <mt-button type="primary" @click.native="submitOneText">提交测试</mt-button>
+        </mt-cell>
+
+    </div>
+</body>
+<!-- 先引入 Vue -->
+<script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.16.1/axios.min.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            visible: false,
+            modeltype: 'jd',
+            input: '',
+            jdtexts: [
+                '点了链接，不是需要拼的产品，而是页面',
+                '我下单没成功，钱什么时候推到账',
+                '对到永乐店就对了，怎么又发到漷县去了',
+                '我买了两个洗澡盆，怎么只到一个！！！！！',
+                '如何办理金卡',
+                '确实不错的一款手机 我是买来作备用机的 主要看中它的电池容量大，流畅度也不错。 我的iphone6sp耗电很快，不带充电宝都不敢出门。 总的来说给好评！！！',
+                '设像头用保护膜贴住，收货时没撕开保护膜看一下，原来连设像头都破了，这就是京东呀！',
+                '手机系统有问题，说是可以拓展128GB,我买了张32新卡插电话里，电话提示检查SD卡。无法识别，每次开机都会提示。',
+                '开箱后明显的从新封塑的痕迹，保护膜上有灰尘气泡，嫌麻烦懒得退货了。',
+                '样子不错，只不过我玩了一局王者荣耀有点卡，手机发热太厉害了',
+                '装手机的盒子有点难打开，手机有点卡，打字的时候触屏键盘不是很好用',
+                '不及红米系列。',
+                '总体来说比较符合千元机的有个水准，还不错，可以给四星。',
+                '看着比note3强点 啥时候能不打磨联发科啊',
+                '手机一如既往的快。跟京东速度一样。早上下单下午到，快递小哥服务好。6g大运存。高通653 速度6到飞起。妈妈再也不用担心我游戏不够畅快。',
+                '物流很快，这个价位算是差不多了，虽然没赶上特价秒杀?，后期用用再看！',
+                '这个快递没话说，京东就是快，东西不错，很划算，五一折扣秒杀买的',
+                '是特别差的一次购物，颜色要求高的不要买，还是买苹果吧！',
+                '感觉一般般，声音很大，速度一般。',
+                '妈的打开任何一个文件都要停半天',
+                '质量 服务 物流各方面都很不错，继续努力',
+                '收到货后很高兴能买到这么实惠质量又好的。大赞～'
+            ],
+            weibotexts: [
+                '和老妈讲电话，气的我肚子痛！！！！',
+                '任总能够帮忙解决这个问题吗为什么不能走正道，非要逼大家翻墙呢？打不开链接的要以最大的毅力忍住不说脏话。',
+                '心情不好就大声吼几声',
+                '貌似博客升级是个大骗局～～～找不到我更新的博客了.....呜呜呜',
+                '饿的想哭，想睡睡不着！！！那我真哭了！！！',
+                '还有一只蚊子精!!!怎嘛还有!!!姐要崩溃了...',
+                '为什么广州站北京站时没有下内场转圈圈，偏偏在我去不了的杭州站有下内场转圈圈，太不公平了',
+                '我很不想工作啊我明天能不能不工作~~毕业后也能不能不工作。。要是被妈妈看到就要骂我没出息了。！',
+                '化着纳税者的钱，还说三道四，信不信我。。。。你太不要。。。我。。。为啥单位组织看世博会，回来后还要写文章乃……无聊的了',
+                '我是幸运的小盆友。。。恭喜拉!',
+                '山顶将近2个小时,顶着烈日回到家,赶紧煲了个茶树菇骨头汤,下下火..顺便美容下~',
+                '起床了，今天要出发去江阴了，飞机上可以畅睡半天，8错！',
+                '求平安，笑颜最高来补张彩色的，看着真是爽啊',
+                '心情不好，很想骂人来着。',
+                '越看越觉得喜欢，可是我不敢！！！',
+                '天又黑了，心情又不好了。',
+                '中国移动没事就打电话过来。移动应该有专业的电话营销团队吧。今天是13479184754过来推销移动活动，存话费送手机。。我的是电信手机。不知道可不可以向移动索取骚扰费.',
+                '我刷屏了。闭嘴数理化去'
+            ],
+            diditexts: [
+                '喂你好为什么我这里的收费和人家乘客的支付不一样呢',
+                '喂你好我向你反映个情况那刚才带一个乘客从青年路到汽车北站我看帐单才五块六可能不对吗',
+                '喂你好收到请请回答',
+                '喂你好请问顺风车的帐号在哪查',
+                '喂你好麻烦帮我取消刚才那张单他已经计费了接不到客人',
+                '喂喂余额那个小那个卡的那个电话那个人工服务电话号码是多少啊',
+                '嗨你好你在吗',
+                '嗨你好怎么那个取消取消订单',
+                '嗨你好我二五号的奖励顺风车奖励没到账的',
+                '三个人抢到一个订单',
+                '三个小时了，西城市区一单没有。我是被封号了吗？',
+                '三个小时才一单',
+                '三个小时都没有一单不跑了，早尼玛',
+                '三个小时都没有订单',
+                '三个月内起没劲',
+                '三公里不用油费？来回六公里，三元了',
+                '三公里的吗有几个能达到三公里的在市区能达到三公里吗分明就是不想给',
+                '三六走不进去客人取消了订单我不是白跑了三公里啊',
+                '三分钟都没到，人家取消为什么还扣',
+                '三十四单那不是少数啊',
+                '三天了一个单都没有听不见',
+                '三天的奖励就没有到账'
+            ]
+        },
+        methods: {
+            randomQuery() {
+                texts = []
+                switch (this.modeltype) {
+                    case "weibo":
+                        texts = this.weibotexts
+                        break;
+                    case "didi":
+                        texts = this.diditexts
+                        break;
+                    case "jd":
+                        texts = this.jdtexts
+                        break;
+                }
+                random = Math.random() * texts.length;
+                this.input = texts[Math.floor(random)]
+            },
+            submitOneText() {
+                console.log(this.modeltype)
+                if (this.input.length < 1) {
+                    this.$toast({
+                        message: "输入不能为空"
+                    })
+                } else {
+                    var that = this;
+                    var endpoint = "sentiment"
+                    switch (this.modeltype) {
+                        case "jd":
+                            endpoint = "sentiment"
+                            break
+                        case "weibo":
+                            endpoint = "weibosenti"
+                            break
+                        case "didi":
+                            endpoint = "didisenti"
+                            break
+                    }
+                    axios.get("http://211.159.169.220:8777/" + endpoint + "?query=" + this.input)
+                        .then(function (res) {
+                            result = eval(res.data)
+                            that.$messagebox({
+                                title: result.sa + " " + result.value,
+                                message: result.query,
+                            })
+                            that.input = ''
+                        })
+                        .catch(function (err) {
+                            console.log(err);
+                        })
+                }
+
+            },
+        }
+    })
+
+</script>
+
+</html>
