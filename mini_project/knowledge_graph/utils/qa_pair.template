@@ -1,1 +1,1 @@
-{{subject_entity}}\t{{relationship}}\t{{object_entity}}\t{{subject_entity}} 的 {{relationship}} 是什么?
+{{ subject_entity }}##{{ relationship }}##{{ object_entity }}##{{ subject_entity }} 的 {{ relationship }} 是什么?
